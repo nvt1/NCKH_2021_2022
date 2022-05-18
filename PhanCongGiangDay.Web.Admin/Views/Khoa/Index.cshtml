@@ -1,0 +1,57 @@
+﻿@model IEnumerable<PhanCongGiangDay.Models.Khoa>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">Quản lý khoa</h2>
+<p>
+    <a href="@Url.Action("CreateKhoa")" class="btn btn-info bi bi-person-plus-fill" role="button" style="font-weight:bold; color:white;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
+            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0z" />
+        </svg>
+        Thêm mới
+    </a>
+    <a href="@Url.Action("ExportDatabase")" class="btn btn-danger" role="button" style="font-weight:bold; color:white;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
+        </svg>
+            Download File Excel
+</a>
+</p>
+
+<table class="table">
+
+    <tr style="background-color:aquamarine">
+        <th style="text-align:center; width:10%">
+            Mã khoa
+        </th>
+        <th style="text-align:center; width:60%">
+            Tên khoa
+        </th>  
+        <th style="text-align:center; width: 30%">
+            Chức Năng
+        </th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="text-align:center; font-weight:bold">
+                @item.MaKhoa
+            </td>
+            <td style="text-align:center">
+                @item.TenKhoa
+            </td>
+            <td style="text-align:center">
+                <a href="@Url.Action("UpdateKhoa", "Khoa", new { maKhoa = item.MaKhoa})" class="btn btn-warning" role="button">Sửa</a>
+                <a href="@Url.Action("GetKhoaByMaKhoa", "Khoa",  new { maKhoa = item.MaKhoa})" class="btn btn-primary" role="button">Chi tiết</a>
+                <a href="@Url.Action("DeleteKhoa", "Khoa", new { maKhoa = item.MaKhoa })" class="btn btn-danger" role="button">Xóa</a>
+            </td>
+        </tr>
+    }
+
+
+</table>

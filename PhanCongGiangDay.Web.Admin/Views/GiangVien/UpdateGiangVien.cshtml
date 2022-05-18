@@ -1,0 +1,113 @@
+﻿@model PhanCongGiangDay.Models.GiangVien
+
+@{
+    ViewBag.Title = "UpdateGiangVien";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    input[type=text], select, textarea {
+        width: 100%; /* Full width */
+        padding: 12px; /* Some padding */
+        border: 1px solid #ccc; /* Gray border */
+        border-radius: 4px; /* Rounded borders */
+        box-sizing: border-box; /* Make sure that padding and width stays in place */
+        margin-top: 6px; /* Add a top margin */
+        margin-bottom: 16px; /* Bottom margin */
+        resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+    }
+    input[readonly] {
+        background-color: #808080;
+        color: black;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+</style>
+
+<h2>Cập nhật thông tin giảng viên: @Model.HoTen</h2>
+
+@using (Html.BeginForm("UpdateGiangVien", "GiangVien", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+    
+    <hr />
+
+    <div class="form-group" style="padding-right: 10%;">
+        <lable class="control-label col-md-2">Mã Giảng Viên </lable>
+        <div class="col-md-10">
+            <input type="text" size="70" name="MaGiangVien" value="@Model.MaGiangVien" readonly  />
+        </div>
+    </div>
+
+    <div class="form-group" style="padding-right: 10%;">
+        <lable class="control-label col-md-2">Tên Giảng Viên </lable>
+        <div class="col-md-10">
+            <input type="text" size="70" name="HoTen" value="@Model.HoTen" />
+        </div>
+    </div>
+
+    <div class="form-group" style="padding-right: 10%;">
+        <lable class="control-label col-md-2">Giới Tính</lable>
+        <div class="col-md-10">
+            <input type="text" size="70" name="GioiTinh" value="@Model.GioiTinh" />
+        </div>
+    </div>
+
+    <div class="form-group" style="padding-right: 10%;">
+        <lable class="control-label col-md-2">Ngày Sinh </lable>
+        <div class="col-md-10">
+            <input type="text" size="70" name="NgaySinh" value="@Model.NgaySinh" />
+        </div>
+    </div>
+
+    <div class="form-group" style="padding-right: 10%;">
+        <lable class="control-label col-md-2">Số Điện Thoại</lable>
+        <div class="col-md-10">
+            <input type="text" size="70" name="SoDienThoai" value="@Model.SoDienThoai" />
+        </div>
+    </div>
+
+    <div class="form-group" style="padding-right: 10%;">
+        <lable class="control-label col-md-2">Email</lable>
+        <div class="col-md-10">
+            <input type="text" size="70" name="Email" value="@Model.Email" readonly/>
+        </div>
+    </div>
+
+    <div class="form-group" style="padding-right: 10%;">
+        <lable class="control-label col-md-2">Địa Chỉ </lable>
+        <div class="col-md-10">
+            <input type="text" size="70" name="DiaChi" value="@Model.DiaChi" />
+        </div>
+    </div>
+
+    <div class="form-group" style="padding-right: 10%;">
+        <lable class="control-label col-md-2">Mật Khẩu </lable>
+        <div class="col-md-10">
+            <input type="text" size="70" name="MatKhau" value="@Model.MatKhau" />
+        </div>
+    </div>
+
+    <div class="form-group" style="padding-right: 10%;">
+        <lable class="control-label col-md-2">Quyển</lable>
+        <div class="col-md-10">
+            <input type="text" size="70" name="Quyen" value="@Model.Quyen" />
+        </div>
+    </div>
+
+    <div class="form-group" style="padding-right: 10%;">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

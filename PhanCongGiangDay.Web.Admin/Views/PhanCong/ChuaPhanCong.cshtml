@@ -1,0 +1,107 @@
+﻿@model IEnumerable<PhanCongGiangDay.Models.NhomLop>
+
+@{
+    ViewBag.Title = "ChuaPhanCong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <h2 style="text-align:center">Danh sách chưa phân công </h2>
+    <table class="table">
+        <tr style="background-color:aquamarine">
+
+            <th style="text-align:center; width:4%">
+                Mã môn học
+            </th>
+            <th style="text-align:center; width:15%">
+                Tên môn học
+            </th>
+            <th style="text-align:center; width:5%">
+                Số tín chỉ
+            </th>
+            <th style="text-align:center; width:5%">
+                Số tiết LT
+            </th>
+            <th style="text-align:center; width:5%">
+                Số tiết TH
+            </th>
+            <th style="text-align:center; width:6%">
+                Tên nhóm
+            </th>
+            <th style="text-align: center; width:3%">
+                Học kỳ
+            </th>
+            <th style="text-align: center; width: 7%">
+                Năm học
+            </th>
+            <th style="text-align:center; width:5%">
+                Mã Giảng viên
+            </th>
+            <th style="text-align:center; width:15%">
+                Tên Giảng viên
+            </th>
+            <th style="text-align:right; width: 20%"></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td style="text-align:center; font-weight:bold; height:50px">
+            @item.MonHoc.MaMonHoc
+        </td>
+        <td style="text-align:center">
+            @item.MonHoc.TenMonHoc
+        </td>
+        <td style="text-align:center">
+            @item.MonHoc.SoTinChi
+        </td>
+        <td style="text-align:center">
+            @item.MonHoc.SoTietLT
+        </td>
+        <td style="text-align:center">
+            @item.MonHoc.SoTietTH
+        </td>
+        <td style="text-align:center">
+            @item.MaNhomLop
+        </td>
+        <td style="text-align:center">
+            @item.HocKy.HocKyThu
+        </td>
+        <td style="text-align:center">
+            @item.HocKy.NamHoc
+        </td>
+        @using (Html.BeginForm("AddPhanCong", "PhanCong", FormMethod.Post))
+        {
+            @Html.Hidden("NhomLopId", item.NhomLopId);
+            <td style="text-align:center">
+                @Html.DropDownList("MaGiangVien" + item.NhomLopId, new SelectList(ViewBag.ListGiangVien, "GiangVienId", "MaGiangVien")
+                ,new { onchange = $"selectedChange(this, {item.NhomLopId})"})
+            </td>
+            <td style="text-align:center">
+                @Html.DropDownList("HoTen" + item.NhomLopId, new SelectList(ViewBag.ListGiangVien, "GiangVienId", "HoTen")
+               , new { onchange = $"selectedChange(this, {item.NhomLopId})"})
+            </td>
+            <td>
+                <button type="submit" class="btn btn-warning">Phân công</button>
+            </td>
+
+        }
+
+
+        @*  <td style="text-align:center">
+            <a href="@Url.Action("UpdateGiangVien", "GiangVien", new { MaGV = item.MaGiangVien })" class="btn btn-warning" role="button">Sửa</a>
+            <a href="@Url.Action("GetGiangVienByMaGiangVien", "GiangVien", new { MaGV = item.MaGiangVien })" class="btn btn-primary" role="button">Chi tiết</a>
+            <a href="@Url.Action("DeleteGiangVien", "GiangVien", new { MaGV = item.MaGiangVien })" class="btn btn-danger" role="button">Xóa</a>
+        </td>*@
+    </tr>
+        }
+
+    </table>
+</div>
+<script type="text/javascript">
+    function selectedChange(Object, NhomLopId) {
+        var value = Object.selectedIndex;
+        document.getElementById("HoTen" + NhomLopId).selectedIndex = value;
+        document.getElementById("MaGiangVien" + NhomLopId).selectedIndex = value;
+    }
+</script>

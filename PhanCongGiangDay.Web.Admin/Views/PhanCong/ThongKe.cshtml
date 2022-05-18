@@ -1,0 +1,105 @@
+﻿@model IEnumerable<PhanCongGiangDay.Models.ThongKe>
+
+@{
+    ViewBag.Title = "ThongKe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">Thống kê danh sách phân công giảng dạy</h2>
+@using (Html.BeginForm("ThongKe", "PhanCong", FormMethod.Get))
+{
+    <div class="form-group">
+        <input type="text" placeholder="Tìm kiếm tại đây....." name="search" style="width:500px" />
+        <select name="HocKyThu">
+            <option value="0">Tất cả học kỳ</option>
+            <option value="1">Học kì 1</option>
+            <option value="2">Học kì 2</option>
+            <option value="3">Học kì 3</option>
+        </select>
+        <select name="NamHoc">
+            <option value="0">Tất cả năm học</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+        </select>
+        <input type="submit" value="Search" class="btn-warning" />
+
+    </div>
+}
+<table class="table">
+    <tr style="background-color:aquamarine">
+
+        <th style="text-align:center; width:10%">
+            Mã giảng viên
+        </th>
+        <th style="text-align:center; width:15%">
+            Tên giảng viên
+        </th>
+        <th style="text-align:center; width:10%">
+            Tổng số nhóm lớp giảng dạy
+        </th>
+        <th style="text-align:center; width:10%">
+            Tổng tín chỉ
+        </th>
+        <th style="text-align:center; width:10%">
+            Tổng số tiết
+        </th>
+        <th style="text-align:center; width:7%">
+            Năm học
+        </th>
+        <th style="text-align:center; width:7%">
+            Học kì
+        </th>
+        <th style="text-align:center; width:10%">
+            Danh sách lớp
+        </th>
+        <th style="text-align:center; width:10%">
+            Danh sách môn giảng dạy
+        </th>
+        <th style="text-align:right; width: 20%"></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="text-align:center; font-weight:bold">
+                @item.MaGiangVien
+            </td>
+            <td style="text-align:center">
+                @item.HoTen
+            </td>
+            <td style="text-align:center">
+                @item.TongNhomLop
+            </td>
+            <td style="text-align:center">
+                @item.TongTinChi
+            </td>
+            <td style="text-align:center">
+                @item.TongSoTiet
+            </td>
+            <td style="text-align:center">
+                @item.NamHoc
+            </td>
+            <td style="text-align:center">
+                @item.Ky
+            </td>
+            <td style="text-align:center">
+                @item.TenLop
+            </td>
+            <td style="text-align:center">
+                @item.TenMonHoc
+            </td>
+
+            @*              <td style="text-align:center">
+                    <a href="@Url.Action("UpdateGiangVien", "GiangVien", new { MaGV = item.MaGiangVien })" class="btn btn-warning" role="button">Sửa</a>
+                    <a href="@Url.Action("GetGiangVienByMaGiangVien", "GiangVien", new { MaGV = item.MaGiangVien })" class="btn btn-primary" role="button">Chi tiết</a>
+                    <a href="@Url.Action("DeleteGiangVien", "GiangVien", new { MaGV = item.MaGiangVien })" class="btn btn-danger" role="button">Xóa</a>
+                </td>*@
+        </tr>
+    }
+
+
+
+</table>
+
+

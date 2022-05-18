@@ -1,0 +1,115 @@
+﻿@model IEnumerable<PhanCongGiangDay.Models.NhomLop>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a href="@Url.Action("CreateNhomLop")" class="btn btn-info bi bi-person-plus-fill" role="button" style="font-weight:bold; color:white;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+        </svg>
+        Thêm mới
+    </a>
+    <a href="@Url.Action("ExportDatabase")" class="btn btn-danger" role="button" style="font-weight:bold; color:white;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
+        </svg>
+        Download File Excel
+    </a>
+    <a href="@Url.Action("Index","Home")" class="btn btn-success" role="button" style="font-weight:bold; color:white;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
+        </svg>
+        Import Data File Excel
+    </a>
+</p>
+<div class="col-md-10">
+     
+    @using (Html.BeginForm("Index", "NhomLop", FormMethod.Post))
+    {
+        @*@Html.DropDownList("HocKyId", new SelectList(ViewBag.ListHocKy, "HocKyThu", "HocKyId"))*@
+        @*@Html.DropDownList("NhomLopId", new SelectList(ViewBag.ListNhomLop, "NhomLopId", "MaNhomLop"))*@
+         <div>
+             Học Kỳ
+            <select name="HocKyThu">
+            <option value="0">Chọn học kỳ</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+             Năm học
+        <select name="NamHoc">
+            <option value="0">Tất cả năm học</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+        </select>
+        <input type="submit" value="Search" />
+         </div>
+        
+    }
+</div>
+@*<div class="col-md-10">
+    @Html.DropDownList("HocKyId", new SelectList(ViewBag.ListHocKy2, "HocKyId", "NamHoc"))
+</div>*@
+<table class="table">
+
+    <tr style="background-color:aquamarine">
+        <th style="text-align:center; width:10%">
+            Mã Nhóm Lớp
+        </th>
+        <th style="text-align:center; width:15%">
+            Mã Môn Học
+        </th>
+        <th style="text-align:center; width:15%">
+            Mã Khoa
+        </th>
+        <th style="text-align:center; width: 10%">
+            Năm Học
+        </th>
+        <th style="text-align:center; width: 10%">
+            Học Kỳ
+        </th>
+        <th style="text-align:center; width: 20%">
+            Chức Năng
+        </th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @Html.Hidden("HocKyId", item.HocKyId);
+            <td style="text-align: center; font-weight: bold; height: 50px">
+                @item.MaNhomLop
+            </td>
+            <td style="text-align:center">
+                @item.MonHoc.MaMonHoc
+            </td>
+             <td style="text-align:center">
+                @item.Khoa.MaKhoa
+            </td>
+            <td style="text-align:center">
+                @item.HocKy.NamHoc
+            </td>
+            <td style="text-align:center">
+                @item.HocKy.HocKyThu
+            </td>
+        
+
+            <td style="text-align:center">
+                <a href="@Url.Action("UpdateNhomLop", "NhomLop", new { nhomLopId = item.NhomLopId})" class="btn btn-warning" role="button">Sửa</a>
+                <a href="@Url.Action("GetNhomLopByIdNhomLop", "NhomLop",  new { nhomLopId = item.NhomLopId})" class="btn btn-primary" role="button">Chi tiết</a>
+                <a href="@Url.Action("DeleteNhomLop", "NhomLop", new { nhomLopId = item.NhomLopId })" class="btn btn-danger" role="button">Xóa</a>
+            </td>
+        </tr>
+    }
+
+
+</table>

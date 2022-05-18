@@ -1,0 +1,87 @@
+﻿@model PhanCongGiangDay.Models.NhomLop
+
+@{
+    ViewBag.Title = "GetNhomLopByIdNhomLop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    input[type=text], select, textarea {
+        width: 100%; /* Full width */
+        padding: 12px; /* Some padding */
+        border: 1px solid #ccc; /* Gray border */
+        border-radius: 4px; /* Rounded borders */
+        box-sizing: border-box; /* Make sure that padding and width stays in place */
+        margin-top: 6px; /* Add a top margin */
+        margin-bottom: 16px; /* Bottom margin */
+        resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+    }
+
+    input[readonly] {
+        background-color: #808080;
+        color: black;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+@*<h2>Thông tin chi tiết của Nhóm lớp: @Model.MaNhomLop</h2>*@
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        <div class="form-group" style="padding-right: 10%;">
+            <lable class="control-label col-md-2">Id </lable>
+            <div class="col-md-10">
+                <input type="text" size="70" name="NhomLopId" value="@Model.NhomLopId" readonly />
+            </div>
+        </div>
+        <div class="form-group" style="padding-right: 10%;">
+            <lable class="control-label col-md-2">Mã nhóm lớp </lable>
+            <div class="col-md-10">
+                <input type="text" size="70" name="MaNhomLop" value="@Model.MaNhomLop" readonly />
+            </div>
+        </div>
+
+        <div class="form-group" style="padding-right: 10%;">
+            <lable class="control-label col-md-2">Mã Khoa </lable>
+            <div class="col-md-10">
+                <input type="text" size="70" name="MaKhoa" value="@Model.Khoa.MaKhoa" readonly />
+            </div>
+        </div>
+
+        <div class="form-group" style="padding-right: 10%;">
+            <lable class="control-label col-md-2">Tên Khoa</lable>
+            <div class="col-md-10">
+                <input type="text" size="70" name="TenKhoa" value="@Model.Khoa.TenKhoa" readonly />
+            </div>
+        </div>
+
+        <div class="form-group" style="padding-right: 10%;">
+            <lable class="control-label col-md-2">Năm học </lable>
+            <div class="col-md-10">
+                <input type="text" size="70" name="NamHoc" value="@Model.HocKy.NamHoc" readonly />
+            </div>
+        </div>
+
+        <div class="form-group" style="padding-right: 10%;">
+            <lable class="control-label col-md-2">Học kỳ</lable>
+            <div class="col-md-10">
+                <input type="text" size="70" name="HocKyThu" value="@Model.HocKy.HocKyThu" readonly />
+            </div>
+        </div>
+
+
+
+    </div>
+}
+
+<p>
+        @Html.ActionLink("Edit", "UpdateNhomLop", new { nhomLopId = Model.NhomLopId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

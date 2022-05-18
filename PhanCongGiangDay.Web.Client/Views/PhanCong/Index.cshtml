@@ -1,0 +1,109 @@
+﻿@model IEnumerable<PhanCongGiangDay.Models.PhanCong>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 style="text-align:center">Danh sách được phân công </h2>
+<br />
+<br />
+<div>
+    @using (Html.BeginForm("Index", "PhanCong", FormMethod.Post))
+    {
+
+        <div>
+            <a href="@Url.Action("ExportDatabase")" class="btn btn-danger" role="button" style="font-weight:bold; color:white;margin-right:400px">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
+                </svg>
+                Download File Excel
+            </a>
+            Học Kỳ :
+            <select name="HocKyThu">
+                <option value="0">Chọn học kỳ</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            Nam học :
+            <select name="NamHoc">
+                <option value="0">Tất cả năm học</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+            </select>
+            <input type="submit" value="Search" />
+        </div>
+
+    }
+
+</div>
+<br />
+
+<div class="container-fluid">
+
+    <table class="table">
+        <tr style="background-color:aquamarine">
+
+            <th style="text-align:center; width:4%">
+                Mã môn học
+            </th>
+            <th style="text-align:center; width:15%">
+                Tên môn học
+            </th>
+            <th style="text-align:center; width:5%">
+                Số tín chỉ
+            </th>
+            <th style="text-align:center; width:5%">
+                Số tiết LT
+            </th>
+            <th style="text-align:center; width:5%">
+                Số tiết TH
+            </th>
+            <th style="text-align:center; width:6%">
+                Tên nhóm
+            </th>
+            <th style="text-align: center; width:3%">
+                Học kỳ
+            </th>
+            <th style="text-align: center; width: 7%">
+                Năm học
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="text-align: center; font-weight: bold; height: 50px">
+                    @item.NhomLop.MonHoc.MaMonHoc
+                </td>
+                <td style="text-align:center">
+                    @item.NhomLop.MonHoc.TenMonHoc
+                </td>
+                <td style="text-align:center">
+                    @item.NhomLop.MonHoc.SoTinChi
+                </td>
+                <td style="text-align:center">
+                    @item.NhomLop.MonHoc.SoTietLT
+                </td>
+                <td style="text-align:center">
+                    @item.NhomLop.MonHoc.SoTietTH
+                </td>
+                <td style="text-align:center">
+                    @item.NhomLop.MaNhomLop
+                </td>
+                <td style="text-align:center">
+                    @item.NhomLop.HocKy.HocKyThu
+                </td>
+                <td style="text-align:center">
+                    @item.NhomLop.HocKy.NamHoc
+                </td>
+
+            </tr>
+        }
+
+
+
+    </table>
+</div>
+

@@ -1,0 +1,6 @@
+C:\Users\Nguyen Van Tuan\Desktop\PhanCongGiangDay\PhanCongGiangDay.Models\bin\Debug\PhanCongGiangDay.Models.dll
+C:\Users\Nguyen Van Tuan\Desktop\PhanCongGiangDay\PhanCongGiangDay.Models\bin\Debug\PhanCongGiangDay.Models.pdb
+C:\Users\Nguyen Van Tuan\Desktop\PhanCongGiangDay\PhanCongGiangDay.Models\obj\Debug\PhanCongGiangDay.Models.csproj.AssemblyReference.cache
+C:\Users\Nguyen Van Tuan\Desktop\PhanCongGiangDay\PhanCongGiangDay.Models\obj\Debug\PhanCongGiangDay.Models.csproj.CoreCompileInputs.cache
+C:\Users\Nguyen Van Tuan\Desktop\PhanCongGiangDay\PhanCongGiangDay.Models\obj\Debug\PhanCongGiangDay.Models.dll
+C:\Users\Nguyen Van Tuan\Desktop\PhanCongGiangDay\PhanCongGiangDay.Models\obj\Debug\PhanCongGiangDay.Models.pdb

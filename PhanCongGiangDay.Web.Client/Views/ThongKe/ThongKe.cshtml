@@ -1,0 +1,113 @@
+﻿@model IEnumerable<PhanCongGiangDay.Models.ThongKe>
+
+@{
+    ViewBag.Title = "ThongKe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <table class="table">
+        <tr style="background-color:aquamarine ">
+            <th style="text-align:center; width:1%">
+
+            </th>
+
+            <th style="text-align:center; width:7%">
+                Tổng số nhóm lớp giảng dạy
+            </th>
+            <th style="text-align:center; width:7%">
+                Tổng tín chỉ
+            </th>
+            <th style="text-align:center; width:10%">
+                Tổng số tiết
+            </th>
+            <th style="text-align:center; width:10%">
+                Tổng số tiết LT
+            </th>
+            <th style="text-align:center; width:12%">
+                Tổng số tiết TH
+            </th>
+            <th style="text-align:center; width:7%">
+                Năm học
+            </th>
+            <th style="text-align:center; width:7%">
+                Học kì
+            </th>
+            <th style="text-align:center; width:10%">
+                Danh sách lớp
+            </th>
+            <th style="text-align:center; width:10%">
+                Danh sách môn giảng dạy
+            </th>
+            <th style="text-align:right; width: 20%"></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                </td>
+                <td style="text-align:center">
+                    @item.TongNhomLop
+                </td>
+                <td style="text-align:center">
+                    @item.TongTinChi
+                </td>
+                <td style="text-align:center">
+                    @item.TongSoTiet
+                </td>
+                <td style="text-align:center">
+                    @item.TongTietLT
+                </td>
+                <td style="text-align:center">
+                    @item.TongTietTH
+                </td>
+                <td style="text-align:center">
+                    @item.NamHoc
+                </td>
+                <td style="text-align:center">
+                    @item.Ky
+                </td>
+                <td style="text-align:center">
+                    @item.TenLop
+                </td>
+                <td style="text-align:center">
+                    @item.TenMonHoc
+                </td>
+
+                @*              <td style="text-align:center">
+                        <a href="@Url.Action("UpdateGiangVien", "GiangVien", new { MaGV = item.MaGiangVien })" class="btn btn-warning" role="button">Sửa</a>
+                        <a href="@Url.Action("GetGiangVienByMaGiangVien", "GiangVien", new { MaGV = item.MaGiangVien })" class="btn btn-primary" role="button">Chi tiết</a>
+                        <a href="@Url.Action("DeleteGiangVien", "GiangVien", new { MaGV = item.MaGiangVien })" class="btn btn-danger" role="button">Xóa</a>
+                    </td>*@
+            </tr>
+
+        }
+        <tr>
+            <td style="text-align:center; width:10%">
+                <h5 style="color:red">Tổng :</h5>
+            </td>
+            <td>
+            </td>
+            <td style="text-align:center; width:10%">
+                @ViewBag.TongTC
+            </td>
+            <td style="text-align:center; width:10%">
+                @ViewBag.TongT
+            </td>
+            <td style="text-align:center; width:10%">
+                @ViewBag.TongLT
+            </td>
+            <td style="text-align:center; width:10%">
+                @ViewBag.TongTH
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+
+    </table>
+
+</div>

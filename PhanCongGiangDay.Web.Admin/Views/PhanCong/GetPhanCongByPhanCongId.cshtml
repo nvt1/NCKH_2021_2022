@@ -1,0 +1,112 @@
+﻿@model PhanCongGiangDay.Models.PhanCong
+
+@{
+    ViewBag.Title = "GetPhanCongByPhanCongId";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    input[type=text], select, textarea {
+        width: 100%; /* Full width */
+        padding: 12px; /* Some padding */
+        border: 1px solid #ccc; /* Gray border */
+        border-radius: 4px; /* Rounded borders */
+        box-sizing: border-box; /* Make sure that padding and width stays in place */
+        margin-top: 6px; /* Add a top margin */
+        margin-bottom: 16px; /* Bottom margin */
+        resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+    }
+
+    input[readonly] {
+        background-color: #808080;
+        color: black;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+<h2>Thông tin chi tiết của Nhóm lớp: @Model.PhanCongId</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+       
+
+        <div class="form-group" style="padding-right: 10%;">
+            <lable class="control-label col-md-2">Mã môn học </lable>
+            <div class="col-md-10">
+                <input type="text" size="70" name="" value="@Model.NhomLop.MonHoc.MaMonHoc" readonly />
+            </div>
+        </div>
+
+        <div class="form-group" style="padding-right: 10%;">
+            <lable class="control-label col-md-2">Tên môn học </lable>
+            <div class="col-md-10">
+                <input type="text" size="70" name="" value="@Model.NhomLop.MonHoc.TenMonHoc" readonly />
+            </div>
+        </div>
+
+        <div class="form-group" style="padding-right: 10%;">
+            <lable class="control-label col-md-2">Số tín chỉ</lable>
+            <div class="col-md-10">
+                <input type="text" size="70" name="" value="@Model.NhomLop.MonHoc.SoTinChi" readonly />
+            </div>
+        </div>
+
+        <div class="form-group" style="padding-right: 10%;">
+            <lable class="control-label col-md-2">Số tiết LT </lable>
+            <div class="col-md-10">
+                <input type="text" size="70" name="" value="@Model.NhomLop.MonHoc.SoTietLT" readonly />
+            </div>
+        </div>
+
+        <div class="form-group" style="padding-right: 10%;">
+            <lable class="control-label col-md-2">Số tiết TH</lable>
+            <div class="col-md-10">
+                <input type="text" size="70" name="" value="@Model.NhomLop.MonHoc.SoTietTH" readonly />
+            </div>
+        </div>
+        <div class="form-group" style="padding-right: 10%;">
+            <lable class="control-label col-md-2">Mã nhóm lớp</lable>
+            <div class="col-md-10">
+                <input type="text" size="70" name="" value="@Model.NhomLop.MaNhomLop" readonly />
+            </div>
+        </div>
+        <div class="form-group" style="padding-right: 10%;">
+            <lable class="control-label col-md-2">Học kỳ thứ</lable>
+            <div class="col-md-10">
+                <input type="text" size="70" name="" value="@Model.NhomLop.HocKy.HocKyThu" readonly />
+            </div>
+        </div>
+        <div class="form-group" style="padding-right: 10%;">
+            <lable class="control-label col-md-2">Năm học</lable>
+            <div class="col-md-10">
+                <input type="text" size="70" name="" value="@Model.NhomLop.HocKy.NamHoc" readonly />
+            </div>
+        </div>
+        <div class="form-group" style="padding-right: 10%;">
+            <lable class="control-label col-md-2">Mã giảng viên</lable>
+            <div class="col-md-10">
+                <input type="text" size="70" name="" value="@Model.GiangVien.MaGiangVien" readonly />
+            </div>
+        </div>
+        <div class="form-group" style="padding-right: 10%;">
+            <lable class="control-label col-md-2">Họ tên</lable>
+            <div class="col-md-10">
+                <input type="text" size="70" name="" value="@Model.GiangVien.HoTen" readonly />
+            </div>
+        </div>
+
+
+</div>
+}
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PhanCongId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

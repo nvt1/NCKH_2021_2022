@@ -1,0 +1,113 @@
+﻿@model IEnumerable<PhanCongGiangDay.Models.GiangVien>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@helper TrunCate(string s, int length)
+{
+    if (s.Length < length)
+    {
+        @s
+    }
+    else
+    {
+        @s.Substring(0, length)<text>....</text>
+    }
+}
+
+<h2>Index</h2>
+
+<p>
+    <a href="@Url.Action("CreateGiangVien")" class="btn btn-info bi bi-person-plus-fill" role="button" style="font-weight:bold; color:white;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+        </svg>
+        Thêm mới
+    </a>
+    <a href="@Url.Action("ExportDatabase")" class="btn btn-danger" role="button" style="font-weight:bold; color:white;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
+        </svg>
+        Download File Excel
+    </a>
+</p>
+@using (Html.BeginForm("Index", "GiangVien", FormMethod.Get))
+{
+    <div class="form-group">
+        <input type="text" placeholder="Tìm kiếm tại đây....." name="search" style="width:500px" />
+        <input type="submit" value="Search" class="btn-warning" />
+    </div>
+}
+<table class="table">
+
+    <tr style="background-color:aquamarine">
+        <th style="text-align:center; width:5%">
+            Mã GV
+        </th>
+        <th style="text-align:center; width:15%">
+            Tên GV
+        </th>
+        <th style="text-align:center; width:7%">
+            Giới tính
+        </th>
+        <th style="text-align:center; width:10%">
+            Ngày sinh
+        </th>
+        <th style="text-align:center; width:10%">
+            SĐT
+        </th>
+        <th style="text-align:center; width:10%">
+            Email
+        </th>
+        <th style="text-align: center; width:20%">
+            Địa chỉ
+        </th>
+        <th style="text-align: center; width: 5%">
+            Quyền
+        </th>
+        <th style="text-align:center; width: 20%">
+            Chức Năng
+        </th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="text-align:center; font-weight:bold">
+                @item.MaGiangVien
+            </td>
+            <td style="text-align:center">
+                @item.HoTen
+            </td>
+            <td style="text-align:center">
+                @item.GioiTinh
+            </td>
+            <td style="text-align:center">
+                @Html.FormatValue(item.NgaySinh, "{0:MM/dd/yyyy}")
+            </td>
+            <td style="text-align:center">
+                @item.SoDienThoai
+            </td>
+            <td style="text-align:center">
+                @item.Email
+            </td>
+            <td style="text-align:center">
+                @Html.Raw(TrunCate(item.DiaChi, 30).ToString())
+            </td>
+            <td style="text-align:center">
+                @item.Quyen
+            </td>
+
+            <td style="text-align:center">
+                <a href="@Url.Action("UpdateGiangVien", "GiangVien", new { MaGV = item.MaGiangVien })" class="btn btn-warning" role="button">Sửa</a>
+                <a href="@Url.Action("GetGiangVienByMaGiangVien", "GiangVien", new { MaGV = item.MaGiangVien })" class="btn btn-primary" role="button">Chi tiết</a>
+                <a href="@Url.Action("DeleteGiangVien", "GiangVien", new { MaGV = item.MaGiangVien })" class="btn btn-danger" role="button">Xóa</a>
+            </td>
+        </tr>
+    }
+
+
+</table>
